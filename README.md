@@ -3,22 +3,23 @@ Essa pasta é feita para guardar codigos interessantes de geoestatítica.
 
 # Código em R
 
-#GeoestatÝstica_1.0-Modelagem Espacial#
+## Geoestatistica_1.0-Modelagem Espacial
 
-#Mudar para o diret¾rio de trabalho#
+### Mudar para o diret¾rio de trabalho#
 
-#Carregar os pacotes necessßrios(Programa R.3.1.1)
+#### Carregar os pacotes necessßrios(Programa R.3.1.1)
 library(fBasics)
 library(geoR)
 library(gstat)
 library(lattice)
 library(sp)
 
-#carregar arquivo de dados
+#### carregar arquivo de dados
 Geo <- read.table("jura.txt", head=T)
 names(Geo) #mostrar o nome das varißveis do banco Geo
 
-#Geo	#mostrar os dados (varißveis) na area de trabalho
+#Geo	
+#mostrar os dados (varißveis) na area de trabalho
 #Resumo do arquivo Geo
 summary(Geo)
 
@@ -44,7 +45,7 @@ par(cex = .75)
 points(Ni, xlab = "W-E", main = "NÝquel", ylab = "N-S", cex.min = 1.2, cex.max=1.5, pt.divide = "quart", x.leg=c(0.2,2.3), y.leg=c(4.3,5.7))
 
 
-###VerificaþÒo da estacionaridade (ausencia de tendencia)
+#### VerificaþÒo da estacionaridade (ausencia de tendencia)
 #Cadmio
 #par(mfrow = c(1,2))
 x11()
@@ -67,7 +68,7 @@ plot(Ni$coords[, 1], Ni$data, xlab = "W-E", ylab = "NÝquel", pch = 20, cex = 1.
 lines(lowess(Ni$data ~ Ni$coords[, 1]))
 
 
-###Semivariogramas experimentais direcionais
+#### Semivariogramas experimentais direcionais
 #par(mfrow = c(1,2))
 
 #Variavel cadmio
@@ -98,7 +99,7 @@ x11()
 plot(v4Ni)
 title("NÝquel")
 
-###Semivariograma de superficie
+#### Semivariograma de superficie
 #Variavel Cadmio
 trellis.par.set(sp.theme()) 
 vgcd = gstat(NULL, "Cadmio", I(Cd)~1, Geo)
@@ -122,8 +123,8 @@ x11()
 plot(variogram(vgni, cutoff=2, width=.2, map=TRUE),cex=1.5,
     main = "(cross) semivariance maps: NÝquel")
 
-###Modelamento semivariografico
-###Analise semivariografica: Niquel
+#### Modelamento semivariografico
+##### Analise semivariografica: Niquel
 #par(mfrow = c(1,2)) # set up the graphics
 variogNi <- variog(Ni, uvec = seq(0, 2, length = 20), option = "bin")
 #Semivariograma unidirecional experimental
